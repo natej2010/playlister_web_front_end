@@ -1,0 +1,54 @@
+{
+  "name": "hello_template",
+  "version": "1.0.0",
+  "description": "A template for creating a full stack wep app with Flask, NPM, Webpack, and Reactjs",
+  "main": "index.jsx",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eyongkevin/portfolio_template.git"
+  },
+  "keywords": [
+    "portfolio",
+    "template",
+    "python",
+    "react",
+    "npm",
+    "webpack"
+  ],
+  "author": "Eyong Kevin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eyongkevin/portfolio_template/issues"
+  },
+  "homepage": "https://github.com/Eyongkevin/portfolio_template#readme",
+  "devDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.7.0",
+    "@material-ui/icons": "^4.5.1",
+    "history": "^4.7.2",
+    "react-scripts": "^3.3.1",
+    "semantic-ui-react": "^0.84.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
