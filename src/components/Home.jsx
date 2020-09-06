@@ -25,9 +25,18 @@ const styles = theme => ({
 const Home = ({ classes}) => {
     const [viewUser, setViewUser] = React.useState('');
 
-    let current_user = 'PLACE HOLDER';
+    let current_user = '';
 
     const handleClick = () => {
+    };
+
+    const loginClick = () => {
+        fetch('http://localhost:3000/api/spotify/authenticate')
+        .then(res => res.json())
+        .then(
+            (result) => {
+                setViewUser(result)
+            })
     };
 
     const handleChange = name => event => {
@@ -38,12 +47,10 @@ const Home = ({ classes}) => {
     return (
         <div className={classes.root}>
             <AppBar />
-            <img className={classes.image} src={'./home_image.jpg'}
-                 alt="Welcome to Game Night Wizard!"/>
             <Typography component="h2" variant="h1" gutterBottom>
-                {`Welcome to Board Game Wizards ${current_user}`}
+                {`Welcome To Playlister`}
             </Typography>
-            <Button onClick={console.log('View My Collection')} className={classes.menuButton} variant="contained" color="default">View My Collection</Button>
+            <Button onClick={loginClick} className={classes.menuButton} variant="contained" color="default">Log Into Spotify</Button>
             <br/>
             <TextField
                 id="standard-name"
