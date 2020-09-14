@@ -35,7 +35,9 @@
   "dependencies": {
     "@material-ui/core": "^4.7.0",
     "@material-ui/icons": "^4.5.1",
+    "axios": "^0.20.0",
     "history": "^4.7.2",
+    "qs": "^6.9.4",
     "react-scripts": "^3.3.1",
     "semantic-ui-react": "^0.84.0"
   },

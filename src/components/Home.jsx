@@ -1,7 +1,7 @@
-import React, {} from 'react';
+import React, { useState } from 'react';
 import {Button, Typography, withStyles} from "@material-ui/core";
-import TextField from '@material-ui/core/TextField';
 import AppBar from './AppBar'
+import axios from 'axios' 
 
 const styles = theme => ({
     button: {
@@ -11,7 +11,7 @@ const styles = theme => ({
         display: 'none',
     },
     root: {
-        marginTop: 100
+        marginTop: 100,
     },
     image: {
         marginRight: 20,
@@ -22,26 +22,29 @@ const styles = theme => ({
     }
 });
 
-const Home = ({ classes}) => {
-    const [viewUser, setViewUser] = React.useState('');
 
-    let current_user = '';
+const Home = ({ classes }) => {
+    const [viewUser, setViewUser] = useState("");
 
-    const handleClick = () => {
-    };
+    
+    const header = localStorage.getItem('spotify_header')
+    if (header) {
+    axios.post('http://localhost:5000/api/spotify/user_profile', 
+    {headers: header})
+        .then(response => {
+            setViewUser(response.data.display_name)
+        })
+    }
+    
 
     const loginClick = () => {
-        fetch('http://localhost:3000/api/spotify/authenticate')
-        .then(res => res.json())
-        .then(
-            (result) => {
-                setViewUser(result)
+        axios.get(`http://localhost:5000/api/spotify/authenticate?callback=${window.location.href}callback`)
+             .then(response => {
+                axios.get(response.data)
+                    .then(response => {
+                        window.location.href = response.request.responseURL
             })
-    };
-
-    const handleChange = name => event => {
-        console.log(event.target.value);
-        setViewUser(event.target.value);
+        })
     };
 
     return (
@@ -52,22 +55,9 @@ const Home = ({ classes}) => {
             </Typography>
             <Button onClick={loginClick} className={classes.menuButton} variant="contained" color="default">Log Into Spotify</Button>
             <br/>
-            <TextField
-                id="standard-name"
-                placeholder="BGG Username"
-                value={viewUser}
-                onChange={handleChange('username')}
-                className={classes.textField}
-                margin="normal"
-                variant="outlined"
-                InputProps={{
-                    classes: {
-                        input: classes.multilineColor
-                    }
-                }}          
-            />
-            <Button onClick={handleClick} className={classes.menuButton} disabled={!viewUser}
-                    variant="contained" color="default">View User Collection</Button>
+            {<Typography component="h2" variant="h1" gutterBottom>
+                {`Logged in as ${ viewUser }`}
+            </Typography> && viewUser }
         </div>
     )
 };
